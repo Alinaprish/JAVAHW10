@@ -210,9 +210,9 @@ public class RadioTest {
     public void shouldSetVolumeBorderEnd() {
         Radio volume = new Radio();
 
-        volume.setCurrentVolume(10);
+        volume.setCurrentVolume(99);
 
-        int expected = 10;
+        int expected = 99;
         int actual = volume.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -223,7 +223,7 @@ public class RadioTest {
     public void shouldSetVolumeAboveBorderEnd() {
         Radio volume = new Radio();
 
-        volume.setCurrentVolume(11);
+        volume.setCurrentVolume(110);
 
         int expected = 0;
         int actual = volume.getCurrentVolume();
@@ -298,9 +298,9 @@ public class RadioTest {
     public void shouldIncreaseVolumeLastBorder() {
         Radio volume = new Radio();
 
-        volume.setCurrentVolume(10);
+        volume.setCurrentVolume(99);
 
-        int expected = 10;
+        int expected = 99;
         int actual = volume.volumeUp();
 
         Assertions.assertEquals(expected, actual);
@@ -310,9 +310,9 @@ public class RadioTest {
     public void shouldIncreaseVolumeBorderValueEnd() {
         Radio volume = new Radio();
 
-        volume.setCurrentVolume(9);
+        volume.setCurrentVolume(98);
 
-        int expected = 10;
+        int expected = 99;
         int actual = volume.volumeUp();
 
         Assertions.assertEquals(expected, actual);
@@ -358,9 +358,9 @@ public class RadioTest {
     public void shouldIncreaseVolumeDownLastBorder() {
         Radio volume = new Radio();
 
-        volume.setCurrentVolume(10);
+        volume.setCurrentVolume(99);
 
-        int expected = 9;
+        int expected = 98;
         int actual = volume.volumeDown();
 
         Assertions.assertEquals(expected, actual);
@@ -370,12 +370,27 @@ public class RadioTest {
     public void shouldIncreaseVolumeDownBorderValueEnd() {
         Radio volume = new Radio();
 
-        volume.setCurrentVolume(9);
+        volume.setCurrentVolume(98);
 
-        int expected = 8;
+        int expected = 97;
         int actual = volume.volumeDown();
 
         Assertions.assertEquals(expected, actual);
+    }
+
+
+    @Test
+    public void testConstructor() {
+        Radio station = new Radio(6);
+
+        Assertions.assertEquals(6, station.getNumberOfStations());
+    }
+
+    @Test
+    public void testConstructorOne() {
+        Radio station = new Radio(1);
+
+        Assertions.assertEquals(1, station.getNumberOfStations());
     }
 
 
