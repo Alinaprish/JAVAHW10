@@ -2,82 +2,72 @@ package ru.netology;
 
 public class Radio {
 
-    public int firstStation = 0;
-    public int lastStation = 9;
-    public int numberOfStations = 10;
+    private int currentStation;
+    private int currentVolume;
 
-    public int currentRadioStationNumber = firstStation;
-
-    public int firstVolume = 0;
-    public int lastVolume = 99;
-    public int currentVolume;
-
-    public int getNumberOfStations() {
-        return numberOfStations;
-    }
-
+    private int maxStation;
 
     public Radio() {
-        this.numberOfStations = getNumberOfStations();
-
+        this.maxStation = 9;
     }
 
     public Radio(int size) {
-        this.numberOfStations = size;
+        this.maxStation = size - 1;
     }
 
-
-    public int getCurrentRadioStationNumber() {
-        return currentRadioStationNumber;
+    public int getCurrentStation() {
+        return currentStation;
     }
 
-    public void setCurrentRadioStationNumber(int newCurrentRadioStationNumber) {
-        if (newCurrentRadioStationNumber < firstStation) {
+    public void setCurrentStation(int currentStation) {
+        if (currentStation < 0) {
             return;
         }
-        if (newCurrentRadioStationNumber > lastStation) {
+        if (currentStation > maxStation) {
             return;
         }
-        currentRadioStationNumber = newCurrentRadioStationNumber;
-    }
-
-    public int nextStation() {
-        if (currentRadioStationNumber < lastStation) {
-            currentRadioStationNumber = currentRadioStationNumber + 1;
-        } else currentRadioStationNumber = firstStation;
-        return currentRadioStationNumber;
-    }
-
-    public int prevStation() {
-        if (currentRadioStationNumber > firstStation) {
-            currentRadioStationNumber = currentRadioStationNumber - 1;
-        } else currentRadioStationNumber = lastStation;
-        return currentRadioStationNumber;
+        this.currentStation = currentStation;
     }
 
     public int getCurrentVolume() {
         return currentVolume;
     }
 
-    public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume < firstVolume) {
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume < 0) {
             return;
         }
-        if (newCurrentVolume > lastVolume) {
+        if (currentVolume > 99) {
             return;
         }
-        currentVolume = newCurrentVolume;
+        this.currentVolume = currentVolume;
     }
 
+
+    public void nextStation() {
+        if (currentStation < maxStation) {
+            currentStation++;
+        } else currentStation = 0;
+    }
+
+    public void prevStation() {
+        if (currentStation > 0) {
+            currentStation--;
+        } else {
+            currentStation = maxStation;
+        }
+    }
+
+
     public int volumeUp() {
-        if (currentVolume < lastVolume) {
+        if (currentVolume < 99) {
             currentVolume = currentVolume + 1;
         } else currentVolume = currentVolume;
         return currentVolume;
     }
 
     public int volumeDown() {
-        if (currentVolume > firstVolume) {
+        if (currentVolume > 0) {
             currentVolume = currentVolume - 1;
         } else currentVolume = currentVolume;
         return currentVolume;
